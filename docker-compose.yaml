@@ -5,7 +5,7 @@
 
 services:
   nextcloud-db:
-    image: mariadb:11.7
+    image: mariadb:11.4
     restart: always
     networks:
       - default
