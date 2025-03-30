@@ -18,7 +18,7 @@ A Hybrid NAS (Network-Attached Storage) server combines the capabilities of trad
 ```
 cp .env.example .env
 ```
-2. **Optional:** Generate self-signed Sertificates
+2. **Optional:** Generate self-signed certificates
 ```
 ./scripts/generate-certs.sh 
 ``` 
