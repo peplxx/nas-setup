@@ -52,8 +52,24 @@ services:
     ports:
       - ${CLOUD_PORT}:80
   
-  nginx:
-    container_name: 'nginx'
+  nginx-http:
+    container_name: 'nginx-http'
+    profiles: [http]
+    image: nginx:1.27.4-alpine
+    networks:
+      - default
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+    volumes:
+      - ./nginx/default-http.conf:/etc/nginx/templates/default.conf.template
+    depends_on:
+      - nextcloud
+
+  nginx-https:
+    container_name: 'nginx-https'
+    profiles: [https]
     image: nginx:1.27.4-alpine
     networks:
       - default
@@ -63,8 +79,8 @@ services:
     env_file:
       - .env
     volumes:
-      - ./certs:/etc/ssl # SSL certificates
-      - ./nginx/default.conf:/etc/nginx/templates/default.conf.template
+      - ./certs:/etc/ssl
+      - ./nginx/default-https.conf:/etc/nginx/templates/default.conf.template
     depends_on:
       - nextcloud
 

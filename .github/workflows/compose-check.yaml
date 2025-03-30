@@ -26,10 +26,10 @@ jobs:
         run: docker compose config
 
       - name: Build Docker images
-        run: docker compose build --pull
+        run: docker compose --profile http build --pull
 
       - name: Start containers
-        run: docker compose up -d
+        run: docker compose --profile http up -d
       
       - name: Check NextCloud Avaliability
         run: |

@@ -14,16 +14,25 @@ A Hybrid NAS (Network-Attached Storage) server combines the capabilities of trad
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
 ### How to run
-1. Setup `.env` file (Configure env variables)
+1. **Setup `.env` file (Configure env variables)**
 ```
 cp .env.example .env
 ```
-2. Deploy Docker Compose
+2. **Optional:** Generate self-signed Sertificates
 ```
-docker compose up --build -d
+./scripts/generate-certs.sh 
+``` 
+3. **Deploy Docker Compose**
+```
+# Use profiles to select http or https
+# Deploy on http
+docker compose --profile http up --build -d
+
+# Deploy on https
+docker compose --profile https up --build -d
 ```
 
 ### Avaliability
 #### NextCloud
-NextCloud instance will be avaliable on `http://localhost/cloud` (use credentials from `.env` file)
+NextCloud instance will be avaliable on `localhost/cloud`(use credentials from `.env` file)
 
